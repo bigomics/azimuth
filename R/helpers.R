@@ -13,21 +13,22 @@
 #' @export
 #'
 ConvertGeneNames <- function(object, reference.names, homolog.table) {
-  uri <- httr::build_url(url = httr::parse_url(url = homolog.table))
-  if (grepl(pattern = '^://', x = uri)) {
-    if (!file.exists(homolog.table)) {
-      stop("Homolog file doesn't exist at path provided: ", homolog.table)
-    }
-  } else {
-    if (!Online(url = homolog.table)) {
-      stop("Cannot find the homolog table at the URL given: ", homolog.table)
-    }
-    homolog.table <- url(description = homolog.table)
-    on.exit(expr = {
-      close(con = homolog.table)
-    })
-  }
-  linked <- readRDS(file = homolog.table)
+  ## uri <- httr::build_url(url = httr::parse_url(url = homolog.table))
+  ## if (grepl(pattern = '^://', x = uri)) {
+  ##   if (!file.exists(homolog.table)) {
+  ##     stop("Homolog file doesn't exist at path provided: ", homolog.table)
+  ##   }
+  ## } else {
+  ##   if (!Online(url = homolog.table)) {
+  ##     stop("Cannot find the homolog table at the URL given: ", homolog.table)
+  ##   }
+  ##   homolog.table <- url(description = homolog.table)
+  ##   on.exit(expr = {
+  ##     close(con = homolog.table)
+  ##   })
+  ## }
+  ## linked <- readRDS(file = homolog.table)
+  linked <- HOMOLOGS
   query.names <- rownames(x = object)
   # remove version numbers
   ensembl.id <- '(?:ENSG|ENSMUS)'
