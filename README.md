@@ -1,3 +1,6 @@
+### This is a fork from satijalab/azimuth with homologs.rds inside the package. A temporary workaround for the curl/SSL error.
+
+
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
